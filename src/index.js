@@ -125,8 +125,7 @@ const makeTransaction = (transaction, onSuccess, onError) => {
             const canProcess = Math.random() > 0.3;
 
             if (canProcess) {
-                const [] = transaction
-                console.log(transaction)
+
                 resolve(transaction)
             } else {
                 // const errror = onError(transaction.id);
@@ -134,13 +133,12 @@ const makeTransaction = (transaction, onSuccess, onError) => {
             }
         }, delay);
     })
-    console.log(promice)
     return promice;
 
 };
 
-const logSuccess = (obj) => {
-    console.log(`Transaction ${obj.id} processed in ${obj.amount}ms`);
+const logSuccess = ({ id, amount }) => {
+    console.log(`Transaction ${id} processed in ${amount}ms`);
 };
 
 const logError = id => {
