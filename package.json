@@ -11,7 +11,7 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/Smilokiller/goit-markup-hw-js.git"
+        "url": "git+https://github.com/Smilokiller/goit-markup-hw-js-module11.git"
     },
     "keywords": [],
     "author": "Alexander Repeta <alexander.repeta@gmail.com>",
@@ -19,7 +19,7 @@
     "bugs": {
         "url": "https://github.com/luxplanjay/webpack-starter-kit/issues"
     },
-    "homepage": "https://smilokiller.github.io/goit-markup-hw-js",
+    "homepage": "https://smilokiller.github.io/goit-markup-hw-js-module11",
     "devDependencies": {
         "@babel/core": "^7.11.1",
         "@babel/plugin-proposal-class-properties": "^7.10.4",
