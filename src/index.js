@@ -1,5 +1,5 @@
 import './styles.css';
-import { Promise } from 'core-js';
+
 //  1 task
 const start = document.querySelector('[data-action="start"]');
 const stop = document.querySelector('[data-action="stop"]');
@@ -37,26 +37,34 @@ const hoursRefs = document.querySelector('[data-value="hours"]');
 const minsRefs = document.querySelector('[data-value="mins"]');
 const secondsRefs = document.querySelector('[data-value="secs"]');
 
-// const countdownTimer = new CountdownTimer({
-//     selector: '#timer-1',
-//     targetDate: new Date('Sep 17, 2020'),
-// });
+const timeFind = function() {
+    const targetDate = new Date('Sep 17, 2020');
+    const dateNow = Date.now();
+    const time = targetDate.getTime() - dateNow;
+    return time;
+}
+
+const timerAdd = function(days, hours, mins, secs) {
+    daysRefs.textContent = days;
+    hoursRefs.textContent = hours;
+    minsRefs.textContent = mins;
+    secondsRefs.textContent = secs;
+}
+
 const timer = function() {
     setInterval(() => {
-        const targetDate = new Date('Sep 17, 2020');
-        const dateNow = Date.now();
-        const time = targetDate.getTime() - dateNow;
+        const time = timeFind();
         const days = Math.floor(time / (1000 * 60 * 60 * 24));
         const hours = Math.floor((time % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         const mins = Math.floor((time % (1000 * 60 * 60)) / (1000 * 60));
         const secs = Math.floor((time % (1000 * 60)) / 1000);
-        daysRefs.textContent = days;
-        hoursRefs.textContent = hours;
-        minsRefs.textContent = mins;
-        secondsRefs.textContent = secs;
+        timerAdd(days, hours, mins, secs);
     }, 1000);
 }
 timer();
+
+
+
 
 // 3 task
 
@@ -114,59 +122,59 @@ timer();
 // --------------------------------------------------------------------------------
 
 
-const randomIntegerFromInterval = (min, max) => {
-    return Math.floor(Math.random() * (max - min + 1) + min);
-};
+// const randomIntegerFromInterval = (min, max) => {
+//     return Math.floor(Math.random() * (max - min + 1) + min);
+// };
 
-const makeTransaction = (transaction, onSuccess, onError) => {
-    const delay = randomIntegerFromInterval(200, 500);
-    const promice = new Promise((resolve, reject) => {
-        setTimeout(() => {
-            const canProcess = Math.random() > 0.3;
+// const makeTransaction = (transaction, onSuccess, onError) => {
+//     const delay = randomIntegerFromInterval(200, 500);
+//     const promice = new Promise((resolve, reject) => {
+//         setTimeout(() => {
+//             const canProcess = Math.random() > 0.3;
 
-            if (canProcess) {
+//             if (canProcess) {
 
-                resolve(transaction)
-            } else {
-                // const errror = onError(transaction.id);
-                reject(transaction.id)
-            }
-        }, delay);
-    })
-    return promice;
+//                 resolve(transaction)
+//             } else {
+//                 // const errror = onError(transaction.id);
+//                 reject(transaction.id)
+//             }
+//         }, delay);
+//     })
+//     return promice;
 
-};
+// };
 
-const logSuccess = ({ id, amount }) => {
-    console.log(`Transaction ${id} processed in ${amount}ms`);
-};
+// const logSuccess = ({ id, amount }) => {
+//     console.log(`Transaction ${id} processed in ${amount}ms`);
+// };
 
-const logError = id => {
-    console.warn(`Error processing transaction ${id}. Please try again later.`);
-};
+// const logError = id => {
+//     console.warn(`Error processing transaction ${id}. Please try again later.`);
+// };
 
-/*
- * Работает так
- */
-// makeTransaction({ id: 70, amount: 150 }, logSuccess, logError);
-// makeTransaction({ id: 71, amount: 230 }, logSuccess, logError);
-// makeTransaction({ id: 72, amount: 75 }, logSuccess, logError);
-// makeTransaction({ id: 73, amount: 100 }, logSuccess, logError);
-/*
- * Должно работать так
- */
-makeTransaction({ id: 70, amount: 150 })
-    .then(logSuccess)
-    .catch(logError);
+// /*
+//  * Работает так
+//  */
+// // makeTransaction({ id: 70, amount: 150 }, logSuccess, logError);
+// // makeTransaction({ id: 71, amount: 230 }, logSuccess, logError);
+// // makeTransaction({ id: 72, amount: 75 }, logSuccess, logError);
+// // makeTransaction({ id: 73, amount: 100 }, logSuccess, logError);
+// /*
+//  * Должно работать так
+//  */
+// makeTransaction({ id: 70, amount: 150 })
+//     .then(logSuccess)
+//     .catch(logError);
 
-makeTransaction({ id: 71, amount: 230 })
-    .then(logSuccess)
-    .catch(logError);
+// makeTransaction({ id: 71, amount: 230 })
+//     .then(logSuccess)
+//     .catch(logError);
 
-makeTransaction({ id: 72, amount: 75 })
-    .then(logSuccess)
-    .catch(logError);
+// makeTransaction({ id: 72, amount: 75 })
+//     .then(logSuccess)
+//     .catch(logError);
 
-makeTransaction({ id: 73, amount: 100 })
-    .then(logSuccess)
-    .catch(logError);
+// makeTransaction({ id: 73, amount: 100 })
+//     .then(logSuccess)
+//     .catch(logError);
